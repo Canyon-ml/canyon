@@ -1,5 +1,5 @@
 
-extern crate soul_core as core;
+pub extern crate soul_core as core;
 
 pub(crate) mod model;
 pub(crate) mod batch;

@@ -3,7 +3,5 @@ name = "soul"
 version = "0.1.0"
 edition = "2021"
 
-[toolchain]
-
 [dependencies]
 soul-core = { git = "https://github.com/Soul-ML/soul-core.git" }
