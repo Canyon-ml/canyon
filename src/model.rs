@@ -85,7 +85,7 @@ impl Model {
                 // The Backward Pass
                 let mut next: &Tensor = &delta;
                 {
-                    for m in self.modules.iter_mut() {
+                    for m in self.modules.iter_mut().rev() {
                         next = m.backward(next);
                     }
                 }
