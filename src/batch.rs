@@ -1,5 +1,6 @@
 
 use core::gt::Tensor;
+use std::result;
 
 #[derive(Clone)]
 pub struct Batch {
@@ -41,6 +42,16 @@ impl Batch {
             Tensor::from_vec(self.input.0, self.input.1, self.input.2, self.input.3, input),
             Tensor::from_vec(self.target.0, self.target.1, 1, 1, target)
         ))
+    }
+
+    pub fn load_csv (&mut self, path: &str) {
+        let mut rdr = csv::Reader::from_path(path).unwrap();
+
+        for result in rdr.records() {
+            let record = result.unwrap();
+
+            
+        }
     }
 }
 

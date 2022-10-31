@@ -3,5 +3,9 @@ name = "soul"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+debug = ["soul-core/debug"]
+
 [dependencies]
+csv = "1.1.6"
 soul-core = { git = "https://github.com/Soul-ML/soul-core.git" }
