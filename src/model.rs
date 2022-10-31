@@ -38,11 +38,11 @@ pub struct Model {
 }
 
 impl Model {
-    pub fn new (batch: Batch, opt: Opt) -> Self {
+    pub fn new (batch: Batch, opt: Opt, loss: Loss) -> Self {
         Self {
             modules: Vec::new(),
             batch: batch.data,
-            loss: Loss::MAE,
+            loss,
             batch_size: batch.batch_size,
             input_size: batch.input,
             target_size: batch.target,
@@ -92,7 +92,6 @@ impl Model {
 
                 #[cfg(feature = "debug")]
                 eprintln!("Finished Backward Pass {_e}. \n");
-                println!("avg loss: {}", avg_loss);
             }
             avg_loss = self.batch.len() as f32 / avg_loss;
             println!("Avg Loss: {}", avg_loss);
