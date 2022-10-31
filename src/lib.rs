@@ -13,4 +13,6 @@ pub mod prelude {
     pub use crate::model::Model;
     pub use crate::modules::*;
     pub use crate::optimizers::*;
+    pub use core::Loss;
+    pub use core::gt;
 }
