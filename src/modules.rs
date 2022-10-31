@@ -40,6 +40,10 @@ impl Mod {
                 result = Box::new(Softmax::new(*prev));
             }
 
+            Mod::Sigmoid => {
+                result = Box::new(Sigmoid::new(*prev));
+            }
+
             _ => { todo!() }
 
         };
