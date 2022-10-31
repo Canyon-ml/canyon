@@ -64,7 +64,7 @@ impl Model {
     pub fn train (&mut self, epochs: usize, stop_at: f32) {
 
         let mut delta = Tensor::new(self.batch_size, self.batch[0].1.cols, 1, 1);
-
+        println!("HI");
         for _e in 0..epochs {
             let mut avg_loss = 0.0;
             for (input, target) in self.batch.iter() {
