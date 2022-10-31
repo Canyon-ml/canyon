@@ -92,6 +92,7 @@ impl Model {
 
                 #[cfg(feature = "debug")]
                 eprintln!("Finished Backward Pass {_e}. \n");
+                println!("avg loss: {}", avg_loss);
             }
             avg_loss = self.batch.len() as f32 / avg_loss;
             println!("Avg Loss: {}", avg_loss);
