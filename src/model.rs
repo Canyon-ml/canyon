@@ -64,13 +64,13 @@ impl Model {
     pub fn train (&mut self, epochs: usize, stop_at: f32) {
 
         let mut delta = Tensor::new(self.batch_size, self.batch[0].1.cols, 1, 1);
-        println!("HI");
         for _e in 0..epochs {
             let mut avg_loss = 0.0;
             for (input, target) in self.batch.iter() {
 
                 // The Forward Pass
                 let mut next: &Tensor = input;
+                println!("input: {:?}", next.data);
                 {
                     for m in self.modules.iter_mut() {
                         next = m.forward(next);
@@ -78,8 +78,6 @@ impl Model {
                 }
 
                 avg_loss += self.loss.compute(next, target, &mut delta);
-
-                println!("Output: {:?}", next.data);
 
                 // The Backward Pass
                 let mut next: &Tensor = &delta;
