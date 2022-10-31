@@ -110,6 +110,8 @@ impl Model {
                 }
             }
 
+            println!("Input: {:?}, output: {:?}, target: {:?}", input.data, next.data, target.data);
+
             let mut delta = Tensor::new(target.rows, target.cols, 1, 1);
             loss += self.loss.compute(next, target, &mut delta);
         }
