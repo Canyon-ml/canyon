@@ -65,7 +65,7 @@ impl Model {
 
         let mut delta = Tensor::new(self.batch_size, self.batch[0].1.cols, 1, 1);
         for _e in 0..epochs {
-            let mut avg_loss = 0.0;
+            let mut loss = 0.0;
             for (input, target) in self.batch.iter() {
 
                 // The Forward Pass
@@ -76,7 +76,7 @@ impl Model {
                     }
                 }
 
-                avg_loss += self.loss.compute(next, target, &mut delta);
+                loss += self.loss.compute(next, target, &mut delta);
 
                 // The Backward Pass
                 let mut next: &Tensor = &delta;
@@ -86,10 +86,9 @@ impl Model {
                     }
                 }
             }
-            avg_loss = self.batch.len() as f32 / avg_loss;
-            println!("Avg Loss: {}", avg_loss);
+            println!("Total Loss: {}", loss);
 
-            if avg_loss < stop_at {
+            if loss < stop_at {
                 println!("Reached Target Average Loss!");
                 return
             }
