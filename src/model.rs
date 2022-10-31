@@ -70,7 +70,6 @@ impl Model {
 
                 // The Forward Pass
                 let mut next: &Tensor = input;
-                println!("input: {:?}", next.data);
                 {
                     for m in self.modules.iter_mut() {
                         next = m.forward(next);
