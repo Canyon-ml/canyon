@@ -86,7 +86,8 @@ impl Model {
                     }
                 }
             }
-            println!("Total Loss: {}", loss);
+            loss = loss / self.batch.len() as f32;
+            println!("Avg Loss: {}", loss);
 
             if loss < stop_at {
                 println!("Reached Target Average Loss!");
