@@ -77,10 +77,9 @@ impl Model {
                     }
                 }
 
-                #[cfg(feature = "debug")]
-                eprintln!("Finished Forward Pass {_e}. \n");
-
                 avg_loss += self.loss.compute(next, target, &mut delta);
+
+                println!("Output: {:?}", next.data);
 
                 // The Backward Pass
                 let mut next: &Tensor = &delta;
@@ -89,9 +88,6 @@ impl Model {
                         next = m.backward(next);
                     }
                 }
-
-                #[cfg(feature = "debug")]
-                eprintln!("Finished Backward Pass {_e}. \n");
             }
             avg_loss = self.batch.len() as f32 / avg_loss;
             println!("Avg Loss: {}", avg_loss);
