@@ -65,7 +65,7 @@ impl Model {
 
         let mut delta = Tensor::new(self.batch_size, self.batch[0].1.cols, 1, 1);
 
-        for _ in 0..epochs {
+        for e in 0..epochs {
             let mut avg_loss = 0.0;
             for (input, target) in self.batch.iter() {
 
@@ -77,6 +77,9 @@ impl Model {
                     }
                 }
 
+                #[cfg(feature = "debug")]
+                eprintln!("Finished Forward Pass {e}. \n");
+
                 avg_loss += self.loss.compute(next, target, &mut delta);
 
                 // The Backward Pass
@@ -86,6 +89,9 @@ impl Model {
                         next = m.backward(next);
                     }
                 }
+
+                #[cfg(feature = "debug")]
+                eprintln!("Finished Backward Pass {e}. \n");
             }
             avg_loss /= self.batch.len() as f32;
             println!("Avg Loss: {}", avg_loss);
